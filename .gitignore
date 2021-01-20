@@ -338,5 +338,4 @@ ASALocalRun/
 .localhistory/
 
 # Other special files that don't upload to git
-CSharpDemo/CSharpDemo/Program.cs
-CSharpDemo/CSharpDemo/Srp/Constants.cs
+CSharpDemo/CSharpDemoConsole/Program.cs

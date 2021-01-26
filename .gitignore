@@ -339,3 +339,4 @@ ASALocalRun/
 
 # Other special files that don't upload to git
 CSharpDemo/CSharpDemoConsole/Program.cs
+CSharpDemo/CSharpDemo/NotFinished/*

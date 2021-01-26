@@ -8,7 +8,7 @@
     {
         private static void Main(string[] args)
         {
-            IDemo demo = new WaitAwaitThreadIdDemo();
+            IDemo demo = new RandomDemo();
             Console.WriteLine($"Demo {demo.GetType().Name} started.");
 
             demo.RunDemo();

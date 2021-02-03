@@ -1,6 +1,7 @@
 ﻿namespace CSharpDemoConsole
 {
     using CSharpDemo;
+    using CSharpDemo.AzureLibrary;
     using CSharpDemo.TaskParallelLibrary;
     using System;
 
@@ -8,13 +9,19 @@
     {
         private static void Main(string[] args)
         {
-            IDemo demo = new RandomDemo();
-            Console.WriteLine($"Demo {demo.GetType().Name} started.");
+            IDemo demo = new DistributedLockDemo();
+            Logger.LogInfo($"Demo {demo.GetType().Name} started.");
 
-            demo.RunDemo();
+            try
+            {
+                demo.RunDemo();
+            }
+            catch (Exception e)
+            {
+                Logger.LogError($"Run {demo.GetType().Name} failed with exception {e.ToString()}");
+            }
 
-            Console.WriteLine($"Demo {demo.GetType().Name} finished.");
-            Console.ReadKey();
+            Logger.LogInfo($"Demo {demo.GetType().Name} finished.");
         }
     }
 }

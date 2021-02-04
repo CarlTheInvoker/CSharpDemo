@@ -70,9 +70,9 @@
             {
                 try
                 {
-                    Logger.LogInfo($"{operationName}: trying to acquire the lock.");
+                    Logger.LogInfo($"{operationName}: acquiring the lock.");
                     var res = await blobLeaseClient.AcquireAsync(leaseInterval, cancellationToken: cancellationToken);
-                    Logger.LogInfo($"{operationName}: succeeded to get the lock");
+                    Logger.LogInfo($"{operationName}: acquired the lock");
                     return blobLeaseClient;
                 }
                 catch (RequestFailedException ex)
@@ -120,7 +120,7 @@
             return await this.AcquireLockAsync(lockName, operationName, retryInterval, leaseInterval, cancellationToken);
         }
 
-        public async Task ReleaseLock(string operationName, BlobLeaseClient blobLeaseClient)
+        public async Task ReleaseLockAsync(string operationName, BlobLeaseClient blobLeaseClient)
         {
             Logger.LogInfo($"{operationName}: releasing the lock");
             await blobLeaseClient.ReleaseAsync();

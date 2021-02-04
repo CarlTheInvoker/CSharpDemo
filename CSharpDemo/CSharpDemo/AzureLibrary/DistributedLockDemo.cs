@@ -48,7 +48,7 @@
             }
 
             action();
-            await AzureBlobDistributionLockProvider.Instance.ReleaseLock(operationName, lease);
+            await AzureBlobDistributionLockProvider.Instance.ReleaseLockAsync(operationName, lease);
         }
 
         private async Task LockByCosmosDb(
@@ -67,7 +67,7 @@
             }
 
             action();
-            await CosmosDbDistributionLockProvider.Instance.ReleaseLock(lockName, operationName, etag);
+            await CosmosDbDistributionLockProvider.Instance.ReleaseLockAsync(lockName, operationName, etag);
         }
     }
 }

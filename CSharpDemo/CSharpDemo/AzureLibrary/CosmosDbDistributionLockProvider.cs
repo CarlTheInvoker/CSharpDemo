@@ -82,6 +82,7 @@
                         LeasedUntil = DateTime.UtcNow.Add(leaseInterval),
                     };
 
+                    Logger.LogInfo($"{operationName}: acquiring the lock");
                     var updateLeaseResponse = await this._container.ReplaceItemAsync<CosmosDbLease>(
                         updatedLease,
                         lockName,
@@ -92,6 +93,7 @@
                         }, 
                         cancellationToken);
 
+                    Logger.LogInfo($"{operationName}: acquired the lock");
                     return readResponse.ETag;
                 }
                 catch (CosmosException ex)
@@ -142,7 +144,7 @@
             return await this.AcquireLockAsync(lockName, operationName, retryInterval, leaseInterval, cancellationToken);
         }
 
-        public async Task ReleaseLock(string lockName, string operationName, string eTag)
+        public async Task ReleaseLockAsync(string lockName, string operationName, string eTag)
         {
             Logger.LogInfo($"{operationName}: releasing the lock");
             var updatedLease = new CosmosDbLease()
@@ -159,6 +161,7 @@
                 {
                     IfMatchEtag = eTag,
                 });
+
             Logger.LogInfo($"{operationName}: released the lock");
         }
 

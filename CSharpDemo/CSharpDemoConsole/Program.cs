@@ -3,13 +3,14 @@
     using CSharpDemo;
     using CSharpDemo.AzureLibrary;
     using CSharpDemo.TaskParallelLibrary;
+    using CSharpDemo.HttpClientDemo;
     using System;
 
     internal class Program
     {
         private static void Main(string[] args)
         {
-            IDemo demo = new DistributedLockDemo();
+            IDemo demo = new SendingRequestConcurrentlyDemo();
             Logger.LogInfo($"Demo {demo.GetType().Name} started.");
 
             try
